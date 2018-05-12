@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+     <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant> 
+     <constant name="struts.multipart.saveDir" value="/tmp"/>
+     <!-- <constant name="struts.action.extension" value="action"/> -->
+    <!-- =======================后台-博客请求====================================== -->
+	<package name="article"  extends="struts-default">	
+	 <action name="article_*" class="articleAction" method="{1}">
+	   <result name="success">/blog/insert.jsp</result>  	      
+	 </action>	
+	 
+	 <action name="Article_*" class="articleAction" method="{1}">
+	   <result name="success">/blog/blog.jsp</result>  	      
+	 </action>
+	 
+	 <!-- =======================页面首页请求初始化请求============================ -->
+	 <action name="index" class="articleAction" method="init">
+	    <result name="success">/blog/index.jsp</result>
+	 </action> 
+	</package>
+	<!-- =======================后台-心情日志请求====================================== -->
+	<package name="moodLog"  extends="struts-default">	
+	 <action name="moodLog_*" class="moodLogAction" method="{1}">
+	   <result name="success">/blog/insert.jsp</result>  	      
+	 </action>	
+	  
+	  <action name="MoodLog_*" class="moodLogAction" method="{1}">
+	   <result name="success">/blog/mood.jsp</result>  	      
+	 </action>	
+	</package>
+   
+
+</struts>

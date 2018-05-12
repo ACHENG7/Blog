@@ -1,0 +1,238 @@
+<!doctype html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Blog后台管理系统</title>
+<meta name="description" content="这是一个form页面">
+<meta name="keywords" content="form">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" type="image/png" href="assets/i/favicon.png">
+<link rel="apple-touch-icon-precomposed"
+	href="assets/i/app-icon72x72@2x.png">
+<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+<link rel="stylesheet" href="assets/css/amazeui.min.css" />
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+
+
+	<header class="am-topbar admin-header">
+		<div class="am-topbar-brand">
+			<strong>盼盼博客</strong> <small>后台管理</small>
+		</div>
+
+	</header>
+
+	<div class="am-cf admin-main">
+		<!-- sidebar start -->
+		<!-- sidebar end -->
+		<!-- content start -->
+		<div class="admin-content">
+			<div class="am-cf am-padding">
+				<div class="am-fl am-cf">
+					<strong class="am-text-primary am-text-lg">操作栏</strong> / <small>form</small>
+				</div>
+			</div>
+
+			<div class="am-tabs am-margin" data-am-tabs>
+				<ul class="am-tabs-nav am-nav am-nav-tabs">
+					<li class="am-active"><a href="#tab1">文章添加</a></li>
+					<li><a href="#tab2">心情日志添加</a></li>
+					<li><a href="#tab3">图片添加</a></li>
+					<li><a href="#tab4" id="articleOperation">文章操作</a></li>
+					<li><a href="#tab5">心情日志操作</a></li>
+					<li><a href="#tab6">图片操作</a></li>
+				</ul>
+		<!-- 博客添加页面 -->
+				<div class="am-tabs-bd">
+					<div class="am-tab-panel am-fade am-in am-active" id="tab1">
+						<form class="am-form" action="article_insert.action" method="post">
+							<div class="am-g am-margin-top">
+								<div class="am-u-sm-2 am-text-right">标题</div>
+								<div class="am-u-sm-4">
+									<input type="text" class="am-input-sm" name="title">
+								</div>
+								<div class="am-u-sm-6">*必填，不可重复</div>
+							</div>
+							<div class="am-g am-margin-top">
+								<div class="am-u-sm-2 am-text-right">类型</div>
+								<div class="am-u-sm-4">
+									<select class="am-input-sm">
+										<option></option>
+									</select>
+								</div>
+								<div class="am-u-sm-6"></div>
+							</div>
+
+							<div class="am-g am-margin-top">
+								<div class="am-u-sm-2 am-text-right">内容摘要</div>
+								<div class="am-u-sm-4">
+									<input type="text" class="am-input-sm">
+								</div>
+								<div class="am-u-sm-6">不填写则自动截取内容前255字符</div>
+							</div>
+
+							<div class="am-g am-margin-top-sm">
+								<div class="am-u-sm-2 am-text-right">内容</div>
+								<div class="am-u-sm-10">
+									<textarea rows="10" placeholder="请使用富文本编辑插件" name="content"></textarea>
+								</div>
+							</div>
+							<div class="am-g am-margin-top">
+								<div class="am-u-sm-2 am-text-right">${request.msg}</div>
+							</div>
+							<div class="am-margin">
+								<button type="submit" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
+								<button type="reset" class="am-btn am-btn-primary am-btn-xs">放弃保存</button>
+							</div>
+						</form>
+					</div>
+			<!-- 博客添加end -->
+			
+			<!-- 心情日志添加start -->
+					<div class="am-tab-panel am-fade" id="tab2"></div>
+			<!-- 心情日志添加end -->
+			<!-- 图片添加start -->
+					<div class="am-tab-panel am-fade" id="tab3">
+						<form class="am-form">
+							<div class="am-g am-margin-top-sm">
+								<div class="am-u-sm-2 am-text-right">SEO 标题</div>
+								<div class="am-u-sm-4 am-u-end">
+									<input type="text" class="am-input-sm">
+								</div>
+							</div>
+
+							<div class="am-g am-margin-top-sm">
+								<div class="am-u-sm-2 am-text-right">SEO 关键字</div>
+								<div class="am-u-sm-4 am-u-end">
+									<input type="text" class="am-input-sm">
+								</div>
+							</div>
+
+							<div class="am-g am-margin-top-sm">
+								<div class="am-u-sm-2 am-text-right">SEO 描述</div>
+								<div class="am-u-sm-4 am-u-end">
+									<textarea rows="4"></textarea>
+								</div>
+							</div>
+						</form>
+					</div>
+			<!-- 相册添加end -->
+			<!-- 博客的综合管理操作start -->
+
+					<div class="am-tab-panel am-fade" id="tab4">
+						<div class="admin-content">
+							<div class="am-g">
+								
+								<div class="am-u-md-3 am-cf">
+									<div class="am-fr">
+										<div class="am-input-group am-input-group-sm">
+											<input type="text" class="am-form-field"> <span
+												class="am-input-group-btn">
+												<button class="am-btn am-btn-default" type="button">搜索</button>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="am-g">
+								<div class="am-u-sm-12">
+									<form class="am-form">
+										<table
+											class="am-table am-table-striped am-table-hover table-main">
+											<thead>
+												<tr>
+													<th class="table-check"><input type="checkbox" /></th>
+													<th class="table-id">ID</th>
+													<th class="table-title">标题</th>
+													<th class="table-type">类别</th>													
+													<th class="table-date">修改日期</th>
+													<th class="table-set">操作</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td><input type="checkbox" /></td>
+													<td>1</td>
+													<td><a href="#">Business management</a></td>
+													<td>default</td>
+													<td>2014年9月4日 7:28:47</td>
+													<td>
+														<div class="am-btn-toolbar">
+															<div class="am-btn-group am-btn-group-xs">
+																<button
+																	class="am-btn am-btn-default am-btn-xs am-text-secondary">
+																	<span class="am-icon-pencil-square-o"></span> 编辑
+																</button>
+																<button class="am-btn am-btn-default am-btn-xs">
+																	<span class="am-icon-copy"></span> 复制
+																</button>
+																<button
+																	class="am-btn am-btn-default am-btn-xs am-text-danger">
+																	<span class="am-icon-trash-o"></span> 删除
+																</button>
+															</div>
+														</div>
+													</td>
+												</tr>
+
+											</tbody>
+										</table>
+										<div class="am-cf">
+											共 15 条记录
+											<div class="am-fr">
+												<ul class="am-pagination">
+													<li class="am-disabled"><a href="#">«</a></li>
+													<li class="am-active"><a href="#">1</a></li>
+													<li><a href="#">2</a></li>
+													<li><a href="#">3</a></li>
+													<li><a href="#">4</a></li>
+													<li><a href="#">5</a></li>
+													<li><a href="#">»</a></li>
+												</ul>
+											</div>
+										</div>
+										<hr />
+									</form>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+		<!-- 博客综合管理操作end -->
+		
+		<!-- 心情日志操作start -->
+		<div class="am-tab-panel am-fade" id="tab5"></div>
+		<!-- 心情日志操作end -->
+		<!-- 图片操作strat -->
+		<div class="am-tab-panel am-fade" id="tab6"></div>
+		<!-- 图片操作end -->
+				</div>
+			</div>
+
+
+		</div>
+		<!-- content end -->
+
+	</div>
+
+
+	<footer>
+		<hr>
+		<p class="am-padding-left">© 2018 浮生如梦博客后台管理系统.---盼盼</p>
+	</footer>
+
+
+	<!--[if (gte IE 9)|!(IE)]><!-->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/amazeui.min.js"></script>
+	<!--<![endif]-->
+	<script src="assets/js/app.js"></script>
+</body>
+</html>

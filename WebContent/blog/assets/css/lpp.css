@@ -1,0 +1,27 @@
+/* 文字显示8行*/
+.wordsHide8 {
+    position:relative;
+    line-height:1.4em;
+    /* 3 times the line-height to show 3 lines */
+    height:9.2em;
+    overflow:hidden;
+}
+.wordsHide8::after {
+    content:"...";
+    font-weight:bold;
+    position:absolute;
+    bottom:0;
+    right:0;
+    padding:0 20px 1px 45px;
+    background:url(http://newimg88.b0.upaiyun.com/newimg88/2014/09/ellipsis_bg.png) repeat-y;
+}
+
+/* 文字显示2行*/
+.wordsHide2 {
+    position:relative;
+    line-height:-1.4em;
+    /* 3 times the line-height to show 3 lines */
+    height:3.2em;
+    overflow:hidden;
+}
+

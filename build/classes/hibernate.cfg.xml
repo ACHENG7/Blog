@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+    
+    <!-- hibernate全局配置 -->
+    <hibernate-configuration>
+    
+        <!-- 数据库联系信息放在session-factory 里面 -->
+          <session-factory>
+       
+        
+        <!-- 指定数据库方言 -->  
+        <property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>  
+        <!-- 根据需要自动创建数据表 -->  
+        
+          <property name="hbm2ddl.auto">update</property>  
+        
+        <!-- 显示Hibernate持久化操作所生成的SQL -->  
+        <property name="show_sql">true</property>  
+        <!-- 将SQL脚本进行格式化后再输出 -->  
+        <property name="hibernate.format_sql">true</property>  
+        
+        
+        
+        <!-- 加载映射文件 -->
+        <mapping resource="com/entity/UserInfo.hbm.xml" />
+        <mapping resource="com/entity/Article.hbm.xml"/>
+        <mapping resource="com/entity/ArticleType.hbm.xml"/>
+        <mapping resource="com/entity/Images.hbm.xml"/>
+        <mapping resource="com/entity/Message.hbm.xml"/>
+        <mapping resource="com/entity/MoodLog.hbm.xml"/>
+        <mapping resource="com/entity/Reply.hbm.xml"/>
+      
+      
+       </session-factory>
+    
+    </hibernate-configuration>

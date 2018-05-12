@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC   
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">  
+    
+    <hibernate-mapping  package="com.entity"><!-- 实体类所在的包名 -->
+           <class  name="Reply" table="t_reply">
+             <id  name="id" >
+                  <generator class="native"></generator>
+             </id>
+
+               <property name="content"  ></property>
+               <property name="replyTime" type="date"></property>
+ 
+               <many-to-one name="articleId" class="com.entity.Article">
+                 <column name="articleId"></column>            
+              </many-to-one>
+              
+           </class>
+    
+    </hibernate-mapping>

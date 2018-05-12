@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC   
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">  
+    
+    <hibernate-mapping  package="com.entity"><!-- 实体类所在的包名 -->
+           <class  name="Images" table="t_images">
+             <id  name="id" >
+                  <generator class="native"></generator>
+             </id>
+             
+               <property name="title" ></property>
+               <property name="imagePath"></property>
+               <property name="content" ></property>
+ 
+           </class>
+    
+    </hibernate-mapping>
