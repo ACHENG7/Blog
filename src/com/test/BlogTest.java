@@ -18,11 +18,14 @@ import com.dao.ArticleDao;
 import com.dao.BaseDao;
 import com.entity.Article;
 import com.entity.MoodLog;
+import com.entity.Reply;
 import com.mysql.fabric.xmlrpc.base.Data;
 import com.service.ArticleService;
 import com.service.ArticleServiceImpl;
 import com.service.MoodLogService;
 import com.service.MoodLogServiceImpl;
+import com.service.ReplyService;
+import com.util.PageBean;
 
 public class BlogTest {
 	
@@ -53,14 +56,15 @@ public class BlogTest {
 	
 	@Test
   public void testBase() {
-	  List<Article> list =service.findAll();
-	  for(Article a : list) {
-			System.out.println(a.getContent());
-		}
+//	  List<Article> list =service.findAll();
+//	  for(Article a : list) {
+//			System.out.println(a.getContent());
+//		}
+	
+		List<Object[]> list2 =service.findNewArticle();
 	  System.out.println("============");
-	  List<Article> list2 =service.findNewArticle();
-	  for(Article a : list2) {
-			System.out.println(a.getContent());
+	  for(Object[] obj : list2) {
+			System.out.println(obj[0]+" -- "+ obj[1]+" -- "+obj[2]);
 		}
 	 
 	 
@@ -82,14 +86,14 @@ public class BlogTest {
 	/***
 	 * 测试问题
 	 */
-	@Test
-	public void testMoodList() {
-		List<MoodLog> list = moodService.findAllMoodLog();
-		for(MoodLog m :list) {
-			System.out.println(m.getContent());
-		}
-		
-	}
+//	@Test
+//	public void testMoodList() {
+//		List<MoodLog> list = moodService.findAllMoodLog();
+//		for(MoodLog m :list) {
+//			System.out.println(m.getContent());
+//		}
+//		
+//	}
 	@Test
 	public void testMoodDelete() {
 		moodService =(MoodLogServiceImpl)ac.getBean("moodLogService");
@@ -97,6 +101,25 @@ public class BlogTest {
 		mood.setId(5);
 		moodService.deleteMoodLog(mood);
 	}
-
+	
+	@Test
+  public void testArticleCount() {
+		System.out.println("count="+service.countArticle());
+		PageBean pageBean = new PageBean(2,6,13);
+		List<Article> list = service.findAll(pageBean);
+		for(Article a:list) {
+			System.out.println("id="+a.getId()+"  title= "+a.getTitle());
+		}
+	}
+	
+	@Test
+	public void testReply() {
+		ReplyService replyService = (ReplyService) ac.getBean("replyService");
+		List<Reply> list=replyService.findAll(35);
+		System.out.println(replyService.countReply(35));
+		for(Reply r:list) {
+			System.out.println(r.getReplyTime());
+		}
+	}
 	
 }

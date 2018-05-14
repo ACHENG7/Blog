@@ -10,8 +10,9 @@
              </id>
 
                <property name="content"  ></property>
-               <property name="replyTime" type="date"></property>
- 
+               <property name="replyTime" type="timestamp"></property>
+               <property name="nickname"></property>  
+               
                <many-to-one name="articleId" class="com.entity.Article">
                  <column name="articleId"></column>            
               </many-to-one>

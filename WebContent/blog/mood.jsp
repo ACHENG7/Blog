@@ -42,24 +42,24 @@
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
 			</div>
 			
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="index">首页</a></li>
-					<li><a href="blog.jsp">博客</a></li>
-					<li><a href="MoodLog_findAllMoodLog">心情日志</a></li>
-					<li><a href="single.html">相册</a></li>
-					<li><a href="#">留言板</a></li>
-					<li><a href="about.html">我的信息</a></li>							
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">详情<b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="sidebar-left.html">Left Sidebar</a></li>
-							<li><a href="sidebar-right.html">Right Sidebar</a></li>							
-						</ul>
-					</li>
-				</ul>
-			
-			</div><!--/.nav-collapse -->			
+		<div class="navbar-collapse collapse">
+
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="index">首页</a></li>
+				<li><a href="Article_findAll">博客</a></li>
+				<li><a href="MoodLog_findAllMoodLog">心情日志</a></li>
+				<li><a href="single.html">相册</a></li>
+				<li><a href="#">留言板</a></li>
+				<li><a href="about.html">我的信息</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">详情<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="sidebar-left.html">Left Sidebar</a></li>
+						<li><a href="sidebar-right.html">Right Sidebar</a></li>
+					</ul></li>
+			</ul>
+
+		</div>		
 		</div>	
 	</nav>
 </header>
@@ -96,15 +96,19 @@
 						
 					</ol>
 					
+						<center class="">
+		                	<ul class="pagination">
+		                   	${pageSplit}
+		                 	</ul>
+		               </center>
+										
 					<div class="clearfix"></div>
 
 					<nav id="comment-nav-below" class="comment-navigation clearfix" role="navigation"><div class="nav-content">
 							<div class="nav-previous">&larr; Older Comments</div>
 							<div class="nav-next">Newer Comments &rarr;</div>
-					</div></nav><!-- #comment-nav-below -->
-
-
-			
+					</div>
+					</nav><!-- #comment-nav-below -->
 				</div>
 			</div>
 		</div> <!-- /row comments -->

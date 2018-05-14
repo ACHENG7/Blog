@@ -20,9 +20,11 @@ public class Article {
 	  //private ArticleType typeId;//博客类型
 	  
 	  
+	  
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -49,6 +51,11 @@ public class Article {
 	
 	public Article() {
 		super();
+	}
+	
+	public Article(int id) {
+		super();
+		this.id = id;
 	}
 	public Article(String title, String content) {
 		super();

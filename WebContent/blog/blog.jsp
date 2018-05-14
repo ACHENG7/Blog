@@ -75,16 +75,16 @@
 	<div class="container">
 		<div class="row topspace">
 			<div class="col-sm-8 col-sm-offset-2">
-			  <s:iterator value="#request.allArticleList">									
+			  <s:iterator value="#request.allArticleList" var="a">									
 				<article class="post">
 					<header class="entry-header">
 						<div class="entry-meta"> 
 							<span class="posted-on"><time class="entry-date published" date="2013-09-27"><s:property value="%{getText('{0,date,yyyy年MM月dd日    HH:mm}',{joinTime})}"/></time></span>			
 						</div>
-						<h1 class="entry-title"><a href="single.jsp?id="+<s:property value="id"/> rel="bookmark"><s:property value="title"/></a></h1>
+						<h1 class="entry-title"><a href="Article_getArticle?id=<s:property value="id"/>" rel="bookmark"><s:property value="title"/></a></h1>
 					</header>
 					<div class="entry-content">
-						<p><s:property value="content"/> <a href="single.jsp?id="+<s:property value="id"/> class="more-link">Continue reading&#8230;</a></p>
+						<p>${a.content} <a href="Article_getArticle?id=<s:property value="id"/>" class="more-link">Continue reading&#8230;</a></p>
 					</div>
 				</article>
  				</s:iterator>	
@@ -94,14 +94,7 @@
 
 		<center class="">
 			<ul class="pagination">
-				<li class="disabled"><a href="">&laquo;</a></li>
-				<li class="active"><a href="">1</a></li>
-				<li><a href="">2</a></li>
-				<li><a href="">3</a></li>
-				<li><a href="">4</a></li>
-				<li><a href="">5</a></li>
-				<li><a href="">6</a></li>
-				<li><a href="">&raquo;</a></li>
+			${pageSplit}
 			</ul>
 		</center>
 	

@@ -3,12 +3,20 @@ package com.dao;
 import java.io.Serializable;
 import java.util.List;
 
+
 /**
  * 基础数据库操作类
  * @author Pan
  *
  */
 public interface BaseDao<T> {
+	/**
+	 * 原生sql
+	 * @param sql
+	 * @return
+	 */
+	
+	public List queryBySql(String sql) ;
 	/**
 	 * 保存一个对象
 	 * @param o

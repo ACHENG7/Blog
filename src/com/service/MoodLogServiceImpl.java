@@ -1,5 +1,6 @@
 package com.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.dao.BaseDao;
 import com.entity.MoodLog;
+import com.util.PageBean;
 @Service("moodLogService")
 public class MoodLogServiceImpl implements  MoodLogService{
  
@@ -37,12 +39,6 @@ public class MoodLogServiceImpl implements  MoodLogService{
 	}
 
 	@Override
-	public List<MoodLog> findAllMoodLog() {
-		String hql="from MoodLog";
-		return baseDao.find(hql);
-	}
-
-	@Override
 	public List<MoodLog> findAllMoodLogByTime() {
 		String hql="from MoodLog order by publicDate desc";
 		return baseDao.find(hql);
@@ -54,5 +50,19 @@ public class MoodLogServiceImpl implements  MoodLogService{
 		return baseDao.count(hql);
 						
 	}
+
+	@Override
+	public List<MoodLog> findAllMoodLogByTime(PageBean page) {
+		String hql="from MoodLog order by publicDate desc";
+		
+		return baseDao.find(hql, new Object[] {}, page.getNowPage(), page.getPageSize());
+	}
+
+	@Override
+	public List<MoodLog> findAllTest(PageBean page) {
+       String hql="from MoodLog order by publicDate desc";	
+		return baseDao.find(hql,  new ArrayList<Object>(), page.getNowPage(), page.getPageSize());
+	}
+	
 
 }

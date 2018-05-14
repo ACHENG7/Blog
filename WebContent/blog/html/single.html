@@ -18,6 +18,13 @@
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
 	<!-- Custom styles -->
 	<link rel="stylesheet" href="assets/css/styles.css">
+	
+	<!-- ueditor -->
+     <script type="text/javascript">
+     document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/ueditor1_4_3/ueditor.config.js\"></sc"+"ript>")
+     document.write("<scr"+"ipt src=\"/Blog/ueditor1_4_3/ueditor.all.min.js\"></sc"+"ript>")
+     document.write("<scr"+"ipt src=\"/Blog/ueditor1_4_3/lang/zh-cn/zh-cn.js\"></sc"+"ript>")
+     </script>
 
 	<!--[if lt IE 9]> <script src="assets/js/html5shiv.js"></script> <![endif]-->
 </head>
@@ -185,7 +192,19 @@
 							</div>
 							<div class="form-group">
 								<label for="inputComment">Comment</label>
-								<textarea class="form-control" rows="6"></textarea>
+								<script id="editor" type="text/plain"
+									style="width:600px;height:500px;" name="content"></script>
+								<script type="text/javascript">  
+                                  var ue = UE.getEditor('editor');  
+                                 function getContent() {  
+                                 var arr = [];  
+                                 arr.push("使用editor.getContent()方法可以获得编辑器的内容");  
+                                 arr.push("内容为：");  
+                                 arr.push(UE.getEditor('editor').getContent());  
+                                alert(arr.join("\n"));  
+                                 }  
+  
+                             </script>
 							</div>
 							<div class="row">
 								<div class="col-md-8">

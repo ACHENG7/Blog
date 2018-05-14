@@ -1,7 +1,37 @@
 
 /**
  * 盼盼jquery
- * 文章操作_删除
+*/
+
+/**
+ * 评论添加操作
+ */
+
+
+
+function test123() {
+	alert("123");
+	var nickname = document.getElementById("nickname").value;
+	var content = document.getElementById("content").value;
+	alert(nickname+"  "+content);
+	
+	$.ajax({
+		type:"post",
+		url:"Blog/blog/reply_insert.action",
+		data:"id="+id+"&nickename="+nickname+"&content="+content,
+		dataType:"json",
+		success:function(data){
+			alert(nickname+"  "+content);
+			alert(data.msg);
+		},
+		error:function(jqObj){
+			alert("Jqery失败了哦~");
+		}
+	});
+}
+
+
+/** 文章操作_删除
  * @returns
  */
  function articleDelete(id){

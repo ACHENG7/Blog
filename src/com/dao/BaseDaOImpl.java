@@ -31,6 +31,14 @@ public class BaseDaOImpl<T> implements BaseDao<T> {
 		return sessionFactory.getCurrentSession();
 	}
 
+	/**
+	 * 原生sql
+	 */
+	public List queryBySql(String sql) {
+		List<Object[]> list = getCurrentSession().createSQLQuery(sql).list();    
+	        return  list;
+	}
+	
 	public Serializable save(T o) {
 		return this.getCurrentSession().save(o);
 	}
@@ -85,6 +93,7 @@ public class BaseDaOImpl<T> implements BaseDao<T> {
 			}
 		}
 		return q.setFirstResult((page - 1) * rows).setMaxResults(rows).list();
+		
 	}
 
 	public List<T> find(String hql, List<Object> param, Integer page, Integer rows) {
@@ -101,6 +110,7 @@ public class BaseDaOImpl<T> implements BaseDao<T> {
 			}
 		}
 		return q.setFirstResult((page - 1) * rows).setMaxResults(rows).list();
+		
 	}
 
 	public T get(Class<T> c, Serializable id) {

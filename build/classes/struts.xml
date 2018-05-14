@@ -7,22 +7,38 @@
      <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant> 
      <constant name="struts.multipart.saveDir" value="/tmp"/>
      <!-- <constant name="struts.action.extension" value="action"/> -->
-    <!-- =======================后台-博客请求====================================== -->
+     
+     
+     <!-- =======================博  客 评 论====================================== -->
+     <package name="reply" extends="struts-default">
+      <action name="reply_*" class="replyAction" method="{1}">
+	    
+	 </action> 
+     </package>
+     
+    <!-- =======================后台    and  博客请求====================================== -->
 	<package name="article"  extends="struts-default">	
+	
 	 <action name="article_*" class="articleAction" method="{1}">
 	   <result name="success">/blog/insert.jsp</result>  	      
 	 </action>	
 	 
 	 <action name="Article_*" class="articleAction" method="{1}">
-	   <result name="success">/blog/blog.jsp</result>  	      
+	   <result name="success">/blog/blog.jsp</result>
+	   <result name="single">/blog/single.jsp</result>    	      
 	 </action>
+	 
+  
 	 
 	 <!-- =======================页面首页请求初始化请求============================ -->
 	 <action name="index" class="articleAction" method="init">
 	    <result name="success">/blog/index.jsp</result>
 	 </action> 
+	  
 	</package>
-	<!-- =======================后台-心情日志请求====================================== -->
+	
+	
+	<!-- =======================后台    and  心情日志请求====================================== -->
 	<package name="moodLog"  extends="struts-default">	
 	 <action name="moodLog_*" class="moodLogAction" method="{1}">
 	   <result name="success">/blog/insert.jsp</result>  	      

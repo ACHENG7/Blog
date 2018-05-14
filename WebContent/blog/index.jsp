@@ -54,7 +54,7 @@
 					<li class="active"><a href="index">首页</a></li>
 					<li><a href="Article_findAll">博客</a></li>
 					<li><a href="MoodLog_findAllMoodLog">心情日志</a></li>
-					<li><a href="single.html">相册</a></li>
+					<li><a href="#">相册</a></li>
 					<li><a href="#">留言板</a></li>
 					<li><a href="about.html">我的信息</a></li>							
 					<li class="dropdown">
@@ -84,11 +84,12 @@
 		<div class="row section featured topspace">
 			<h2 class="section-title"><span>博客</span></h2>
 			<div class="row">
-			   <s:iterator value="#request.newArticleList">
+			   <s:iterator value="#request.newArticleList" var="n">
 				<div class="col-sm-6 col-md-3 ">
+				<!-- 标题限制两行 -->
 					<h3 class="text-center wordsHide2" ><s:property value="title"/> </h3>					
-					<p class="wordsHide8"><s:property value="content"/></p>					
-					<p class="text-center"><a href="" class="btn btn-action">Read more</a></p>
+					${n.content}				
+					<p class="text-center"><a href="Article_getArticle?id=<s:property value="id"/>"  class="btn btn-action">Read more</a></p>
 				</div>
 				</s:iterator>
 			</div>

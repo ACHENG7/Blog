@@ -19,9 +19,12 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.entity.Article;
-
+import com.entity.Reply;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.ArticleService;
+import com.service.ReplyService;
+import com.util.PageBean;
+import com.util.PageSplit;
 
 import net.sf.morph.context.contexts.HttpServletContext;
 
@@ -30,13 +33,20 @@ public class ArticleAction extends ActionSupport {
 
 	String title;
 	String content;
-	int id;
+	int id; //博客id
+	Integer page;//当前页
 
 	@Resource
 	ArticleService articleService;
+	@Resource
+	ReplyService replyService;
 
 	public void setArticleService(ArticleService articleService) {
 		this.articleService = articleService;
+	}
+
+	public void setReplyService(ReplyService replyService) {
+		this.replyService = replyService;
 	}
 
 	public String getContent() {
@@ -62,35 +72,70 @@ public class ArticleAction extends ActionSupport {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+		
+	public Integer getPage() {
+		return page;
+	}
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
 	/**
 	 * ==============================遍历所有博客===================================
 	 * @return
 	 * @throws IOException
 	 */
 	public String findAll() throws IOException {
-		List<Article> list = articleService.findAll();
+	
+		
 		HttpServletRequest request = ServletActionContext.getRequest();
+		if(page==null) {
+			page=1;
+		}
+		int totalsize = articleService.countArticle().intValue();
+		PageBean pageBean = new PageBean(page,5,totalsize);
+		List<Article> list = articleService.findAll(pageBean);
+		String pageSplit = new PageSplit().pageSplit("Article_findAll?page=", pageBean);
 		if (list != null) {
+			
 			request.setAttribute("allArticleList", list);
+			request.setAttribute("pageSplit", pageSplit);
 		}
 		return SUCCESS;
 
 	}
-	/**
-	 * =============================查看详情博客=====================================
-	 */
 	
+	/**
+	 * =============================查看详情博客并加载评论=====================================
+	 */
+	public String getArticle() {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		Article article =articleService.getArticle(getId());
+		List<Reply> replyList = replyService.findAll(id);
+		Long countReply = replyService.countReply(id);
+		request.setAttribute("article", article);
+		request.setAttribute("countReply", countReply);
+		request.setAttribute("replyList", replyList);
+		//request.setAttribute("id", id);
+		return "single";
+		
+	}
+	
+	//首页只展示最新日期的4条记录
+	public String init() {
+		HttpServletRequest requset  = ServletActionContext.getRequest();
+//		PageBean page=new PageBean(1,4);
+//		List<Article> list =articleService.findAll(page);
+		List<Object[]> list =articleService.findNewArticle();
+		requset.setAttribute("newArticleList", list);
+	
+		return SUCCESS;
+	}
 	/**
 	 * =====================   博客后台管理 start===================================
 	 * 首页初始化
 	 */
-	public String init() {
-		HttpServletRequest requset  = ServletActionContext.getRequest();
-		List<Article> list =articleService.findNewArticle();
-		requset.setAttribute("newArticleList", list);
-		return SUCCESS;
-	}
 	
 	/**
 	 * 博客插入
@@ -144,7 +189,9 @@ public class ArticleAction extends ActionSupport {
 	 * @throws IOException
 	 */
 	public String findAllArticle() throws IOException {
+	
 		List<Article> list = articleService.findAll();
+		
 		// 获取一个response
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setCharacterEncoding("utf-8");
@@ -161,6 +208,7 @@ public class ArticleAction extends ActionSupport {
 		return null;
 
 	}
+	
 	/**
 	 *  =====================   博客后台管理 end===================================
 	 */

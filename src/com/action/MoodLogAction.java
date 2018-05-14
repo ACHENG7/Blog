@@ -18,6 +18,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.entity.MoodLog;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.MoodLogService;
+import com.util.PageBean;
+import com.util.PageSplit;
 
 import net.sf.morph.context.contexts.HttpServletContext;
 
@@ -25,6 +27,8 @@ import net.sf.morph.context.contexts.HttpServletContext;
 public class MoodLogAction extends ActionSupport {
 	String moodLogContent;
 	int moodLogId;
+	Integer page;
+	
 	@Resource
 	MoodLogService moodLogService;
 	
@@ -42,9 +46,14 @@ public class MoodLogAction extends ActionSupport {
 	}
 	public void setMoodLogId(int moodLogId) {
 		this.moodLogId = moodLogId;
+	}	
+    public Integer getPage() {
+		return page;
 	}
-	
-  /*================心情日志后台操作action  start  ===============================*/
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+	/*================心情日志后台操作action  start  ===============================*/
 	public String insert() {
 		MoodLog mood = new MoodLog();
 		mood.setContent(moodLogContent);
@@ -54,13 +63,14 @@ public class MoodLogAction extends ActionSupport {
 	}
 	
 	public String delete() throws IOException {
+		
 		MoodLog mood = new MoodLog();
 		mood.setId(moodLogId);
 		
 		HttpServletResponse response =ServletActionContext.getResponse();
 		response.setCharacterEncoding("utf-8");
 		JSONObject str = new JSONObject();
-
+      
 		PrintWriter out = response.getWriter();
 		try {
 			moodLogService.deleteMoodLog(mood);
@@ -82,7 +92,7 @@ public class MoodLogAction extends ActionSupport {
 		response.setCharacterEncoding("utf-8");		
 		//获取print对象
 		PrintWriter out = response.getWriter();
-		List<MoodLog> list = moodLogService.findAllMoodLog();	
+		List<MoodLog> list = moodLogService.findAllMoodLogByTime();	
 		if(list!=null) {			
 			String jsonStr = JSONArray.toJSONString(list);
 			 out.print(jsonStr);
@@ -104,13 +114,21 @@ public class MoodLogAction extends ActionSupport {
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		
-		List<MoodLog> list = moodLogService.findAllMoodLogByTime();	
 		Long count = moodLogService.countAllMoodLog();
+		if(page==null) {
+			page=1;
+		}
+		
+		PageBean pageBean = new PageBean(page,8,count.intValue());
+		List<MoodLog> list = moodLogService.findAllMoodLogByTime(pageBean);	
+		//List<MoodLog> list = moodLogService.findAllTest(pageBean);
+	    String pageSplit = new PageSplit().pageSplit("MoodLog_findAllMoodLog?page=", pageBean);
 		if(list!=null) {
 			request.setAttribute("allMoodLogList", list);
 			request.setAttribute("countMoodLog", count);
+			request.setAttribute("pageSplit", pageSplit);
 //			for(MoodLog m:list) {
-//				System.out.println(m.getPublicDate());
+//				System.out.println(m.getContent());
 //			}
 		}
 		return SUCCESS;
