@@ -11,7 +11,7 @@
              
                
                <property name="content"  ></property>
-               <property name="sendTime" type="date"></property>
+               <property name="sendTime" type="timestamp"></property>
                <property name="nickName"></property>
               
               

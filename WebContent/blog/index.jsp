@@ -48,14 +48,14 @@
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
 			</div>
 			
-			<div class="navbar-collapse collapse">
+			<div class="navbar-collapse collapse ">
 				
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="index">首页</a></li>
 					<li><a href="Article_findAll">博客</a></li>
 					<li><a href="MoodLog_findAllMoodLog">心情日志</a></li>
 					<li><a href="#">相册</a></li>
-					<li><a href="#">留言板</a></li>
+					<li><a href="message_findAll">留言板</a></li>
 					<li><a href="about.html">我的信息</a></li>							
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">详情<b class="caret"></b></a>
@@ -77,7 +77,7 @@
 		
 		<div class="row section topspace">
 			<div class="col-md-12">
-				<p class="lead text-center text-muted">把这里当做你的吧 <a href="about.html">树洞</a>吧~ 尽情的在这个畅所欲言，留下你来过的痕迹 <a href="sidebar-right.html">~.~</a>. </p>
+				<p class="lead text-center text-muted">把这里当做你的吧 <a href="about.html">树洞</a>吧~ 尽情的在这个畅所欲言，留下你来过的痕迹 <a href="sidebar-right.html">(๑＞ ＜)☆</a>. </p>
 			</div>
 		</div> <!-- / section -->
 		
@@ -100,84 +100,23 @@
 			<h2 class="section-title"><span>相 册</span></h2>
 			
 			<div class="thumbnails recentworks row">
-				
-				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-					<a class="thumbnail" href="sidebar-right.html">
+			
+				<s:iterator value="#request.newImagesList">
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 ">
+					<a class="thumbnail" href="#">
 						<span class="img">
-							<img src="assets/images/s1.jpg" alt="">
+							<img  src='<s:property value='imagePath' />' alt="">
 							<span class="cover"><span class="more">查 看 详 情 &rarr;</span></span>
 						</span>
 						<span class="title">相 册 信 息</span>
 					</a>
-					<span class="details"><a href="">Web design</a> | <a href="">Wordpress</a> | <a href="">Logotype</a></span>
+					<span class="details"><a href="">(๑╹∀╹๑)</a> | <a href="">生 活 照</a> | <a href="">(๑╹∀╹๑)</a></span>
 					<h4></h4>
 					<p></p>
 				</div>
+				</s:iterator>
 				
-				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-					<a class="thumbnail" href="sidebar-right.html">
-						<span class="img">
-							<img src="assets/images/s1.jpg" alt="">
-							<span class="cover"><span class="more">See details &rarr;</span></span>
-						</span>
-						<span class="title">Pure ipsum - development services for people</span>
-					</a>
-					<span class="details"><a href="">Web design</a> | <a href="">Wordpress</a></span>
-					<h4></h4>
-					<p></p>
-				</div>
-				
-				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-					<a class="thumbnail" href="sidebar-right.html">
-						<span class="img">
-							<img src="assets/images/s1.jpg" alt="">
-							<span class="cover"><span class="more">See details &rarr;</span></span>
-						</span>
-						<span class="title">Lorem studios - interior and patio design</span>
-					</a>
-					<span class="details"><a href="">Web design</a> | <a href="">Logotype</a></span>
-					<h4></h4>
-					<p></p>
-				</div>
-
-				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-					<a class="thumbnail" href="sidebar-right.html">
-						<span class="img">
-							<img src="assets/images/s1.jpg" alt="">
-							<span class="cover"><span class="more">See details &rarr;</span></span>
-						</span>
-						<span class="title">Pure ipsum - development services for people</span>
-					</a>
-					<span class="details"><a href="">Web design</a> | <a href="">Wordpress</a></span>
-					<h4></h4>
-					<p></p>
-				</div>
-				
-				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-					<a class="thumbnail" href="sidebar-right.html">
-						<span class="img">
-							<img src="assets/images/s1.jpg" alt="">
-							<span class="cover"><span class="more">查 看 详 情 &rarr;</span></span>
-						</span>
-						<span class="title">Lorem studios - interior and patio design</span>
-					</a>
-					<span class="details"><a href="">Web design</a> | <a href="">Logotype</a></span>
-					<h4></h4>
-					<p></p>
-				</div>
-
-				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-					<a class="thumbnail" href="sidebar-right.html">
-						<span class="img">
-							<img src="assets/images/s1.jpg" alt="">
-							<span class="cover"><span class="more">See details &rarr;</span></span>
-						</span>
-						<span class="title">Lorem studios - interior and patio design</span>
-					</a>
-					<span class="details"><a href="">Web design</a> | <a href="">Logotype</a></span>
-					<h4></h4>
-					<p></p>
-				</div>
+		
 			</div>
 
 		</div> <!-- /section -->
@@ -278,12 +217,13 @@
 	</div>
 </footer>
 
-
-
-<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 <script src="assets/js/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
 <script src="assets/js/template.js"></script>
 <script src="assets/js/lpp.js"></script>
+<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+
 </body>
 </html>

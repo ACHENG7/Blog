@@ -35,6 +35,8 @@
    <bean id="articleAction" class="com.action.ArticleAction"></bean>
    <bean id="moodLogAction" class="com.action.MoodLogAction"></bean>
    <bean id="replyAction" class="com.action.ReplyAction"></bean>
+   <bean id="messageAction" class="com.action.MessageAction"></bean>
+   <bean id="imagesAction" class="com.action.ImagesAction"></bean>
      
 <!-- 配置事务 -->
      <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">

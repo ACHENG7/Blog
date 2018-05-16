@@ -8,7 +8,21 @@
      <constant name="struts.multipart.saveDir" value="/tmp"/>
      <!-- <constant name="struts.action.extension" value="action"/> -->
      
+     <!-- =======================相册========================================= -->
      
+     <package name="images" extends="struts-default">
+       <action name="images_*" class="imagesAction" method="{1}">
+          <result name="insert">/blog/insert.jsp</result>
+       </action>
+     </package>
+     
+     <!-- =======================  留言板     ===================================== -->
+     <package name="message" extends="struts-default">
+       <action name="message_*" class="messageAction" method="{1}">
+         <result name="success">/blog/message.jsp</result>
+       </action>
+     
+     </package>
      <!-- =======================博  客 评 论====================================== -->
      <package name="reply" extends="struts-default">
       <action name="reply_*" class="replyAction" method="{1}">

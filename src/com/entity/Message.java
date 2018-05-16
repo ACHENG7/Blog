@@ -2,12 +2,15 @@ package com.entity;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Message {
 	/**
 	 * 留言板
 	 */
 	private int id;
 	private String content;//内容
+	@JSONField(format="yyyy/MM/dd HH:ss")
 	private Date sendTime;//发布时间
 	private String nickName;//昵称
 	

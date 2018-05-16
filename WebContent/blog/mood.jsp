@@ -48,8 +48,8 @@
 				<li class="active"><a href="index">首页</a></li>
 				<li><a href="Article_findAll">博客</a></li>
 				<li><a href="MoodLog_findAllMoodLog">心情日志</a></li>
-				<li><a href="single.html">相册</a></li>
-				<li><a href="#">留言板</a></li>
+				<li><a href="#">相册</a></li>
+				<li><a href="message_findAll">留言板</a></li>
 				<li><a href="about.html">我的信息</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">详情<b class="caret"></b></a>

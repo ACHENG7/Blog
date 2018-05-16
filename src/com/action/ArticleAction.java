@@ -19,9 +19,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.entity.Article;
+import com.entity.Images;
 import com.entity.Reply;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.ArticleService;
+import com.service.ImagesService;
 import com.service.ReplyService;
 import com.util.PageBean;
 import com.util.PageSplit;
@@ -40,6 +42,8 @@ public class ArticleAction extends ActionSupport {
 	ArticleService articleService;
 	@Resource
 	ReplyService replyService;
+	@Resource
+	ImagesService imagesService;
 
 	public void setArticleService(ArticleService articleService) {
 		this.articleService = articleService;
@@ -47,6 +51,11 @@ public class ArticleAction extends ActionSupport {
 
 	public void setReplyService(ReplyService replyService) {
 		this.replyService = replyService;
+	}
+	
+
+	public void setImagesService(ImagesService imagesService) {
+		this.imagesService = imagesService;
 	}
 
 	public String getContent() {
@@ -123,12 +132,18 @@ public class ArticleAction extends ActionSupport {
 	}
 	
 	//首页只展示最新日期的4条记录
+	/**
+	 * 首页展示博客和相册
+	 * @return
+	 */
 	public String init() {
 		HttpServletRequest requset  = ServletActionContext.getRequest();
 //		PageBean page=new PageBean(1,4);
 //		List<Article> list =articleService.findAll(page);
 		List<Object[]> list =articleService.findNewArticle();
+		List<Images> list2 = imagesService.findNewImages();
 		requset.setAttribute("newArticleList", list);
+		requset.setAttribute("newImagesList", list2);
 	
 		return SUCCESS;
 	}

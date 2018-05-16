@@ -14,14 +14,16 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
-import com.dao.ArticleDao;
+
 import com.dao.BaseDao;
 import com.entity.Article;
+import com.entity.Message;
 import com.entity.MoodLog;
 import com.entity.Reply;
-import com.mysql.fabric.xmlrpc.base.Data;
+
 import com.service.ArticleService;
 import com.service.ArticleServiceImpl;
+import com.service.MessageService;
 import com.service.MoodLogService;
 import com.service.MoodLogServiceImpl;
 import com.service.ReplyService;
@@ -120,6 +122,25 @@ public class BlogTest {
 		for(Reply r:list) {
 			System.out.println(r.getReplyTime());
 		}
+	}
+	
+	
+	@Test
+	public void testMessage() {
+	  MessageService mservice = (MessageService) ac.getBean("messageService");
+//	  for(int i=0;i<10;i++) {
+//		  Message m = new Message();
+//		  m.setContent("这是一条私密留言");
+//		  m.setNickName("小可爱");
+//		  m.setSendTime(new Date());
+//		  mservice.insertMessage(m);
+//	  }
+	  List<Message> list = mservice.findAllMessage(new PageBean(1,5,4));
+	  for(Message m:list) {
+		  System.out.println(m.getNickName());
+	  }
+	  
+	  
 	}
 	
 }

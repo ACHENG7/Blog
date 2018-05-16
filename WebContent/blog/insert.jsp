@@ -132,26 +132,29 @@
 					<!-- 心情日志添加end -->
 					<!-- 图片添加start -->
 					<div class="am-tab-panel am-fade" id="tab3">
-						<form class="am-form">
+						<form class="am-form" action="images_insert" method="post" enctype="multipart/form-data">
 							<div class="am-g am-margin-top-sm">
-								<div class="am-u-sm-2 am-text-right">SEO 标题</div>
+								<div class="am-u-sm-2 am-text-right"> 标题</div>
 								<div class="am-u-sm-4 am-u-end">
-									<input type="text" class="am-input-sm">
+									<input type="text" class="am-input-sm" name="title">
 								</div>
 							</div>
 
 							<div class="am-g am-margin-top-sm">
-								<div class="am-u-sm-2 am-text-right">SEO 关键字</div>
+								<div class="am-u-sm-2 am-text-right">内容</div>
 								<div class="am-u-sm-4 am-u-end">
-									<input type="text" class="am-input-sm">
+									<input type="text" class="am-input-sm" name="content">
 								</div>
 							</div>
 
 							<div class="am-g am-margin-top-sm">
-								<div class="am-u-sm-2 am-text-right">SEO 描述</div>
+								<div class="am-u-sm-2 am-text-right">图片添加</div>
 								<div class="am-u-sm-4 am-u-end">
-									<textarea rows="4"></textarea>
+									<input type="file" name="uploadImages">
 								</div>
+							</div>
+							<div class="am-margin">
+								<button type="submit" class="am-btn am-btn-primary am-btn-xs">提交保存</button>								
 							</div>
 						</form>
 					</div>

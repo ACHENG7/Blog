@@ -75,8 +75,8 @@
 				<li class="active"><a href="index">首页</a></li>
 				<li><a href="Article_findAll">博客</a></li>
 				<li><a href="MoodLog_findAllMoodLog">心情日志</a></li>
-				<li><a href="single.html">相册</a></li>
-				<li><a href="#">留言板</a></li>
+				<li><a href="#">相册</a></li>
+				<li><a href="message_findAll">留言板</a></li>
 				<li><a href="about.html">我的信息</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">详情<b class="caret"></b></a>
@@ -121,11 +121,11 @@
 				<div id="comments">
 					<s:if test="%{#request.countReply!=0}">
 						<h3 class="comments-title">共 有 ${countReply }条 评 论</h3>
-						<a href="#comment-form" class="leave-comment">Leave a Comment</a>
+						<a href="#respond" class="leave-comment">Leave a Comment</a>
 					</s:if>
 					<s:if test="%{#request.countReply==0}">
 						<h5 class="comments-title">还没有评论哦~</h5>
-						<a href="#comment-form" class="leave-comment">Leave a Comment</a>
+						<a href="#respond" class="leave-comment">Leave a Comment</a>
 					</s:if>
 
 
